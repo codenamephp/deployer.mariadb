@@ -1,0 +1,12 @@
+name: Update Changelog
+on:
+  push:
+    branches: [ main ]
+    paths-ignore:
+      - "**.md"
+
+jobs:
+  update_changelog:
+    uses: codenamephp/workflows.common/.github/workflows/update-changelog.yml@main
+    with:
+      ref: ${{github.ref_name}}
