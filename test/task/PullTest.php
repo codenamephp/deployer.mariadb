@@ -5,7 +5,6 @@ namespace de\codenamephp\deployer\mariadb\test\task;
 use Closure;
 use de\codenamephp\deployer\base\functions\All;
 use de\codenamephp\deployer\base\functions\iAll;
-use de\codenamephp\deployer\base\hostCheck\DoNotRunOnProduction;
 use de\codenamephp\deployer\base\hostCheck\iHostCheck;
 use de\codenamephp\deployer\mariadb\database\factory\database\iDatabase;
 use de\codenamephp\deployer\mariadb\dumpfile\factory\fromDatabaseNameAndTimestamp\SimpleNew;
@@ -38,7 +37,9 @@ final class PullTest extends TestCase {
   }
 
   public function test__construct() : void {
-    $this->sut = new Pull();
+    $hostCheck = $this->createMock(iHostCheck::class);
+
+    $this->sut = new Pull(hostCheck: $hostCheck);
 
     self::assertInstanceOf(SimpleNew::class, $this->sut->dumpfile);
     self::assertInstanceOf(\de\codenamephp\deployer\mariadb\database\factory\database\SimpleNew::class, $this->sut->database);
@@ -46,7 +47,7 @@ final class PullTest extends TestCase {
     self::assertInstanceOf(\de\codenamephp\deployer\mariadb\task\deleteDump\factory\SimpleNew::class, $this->sut->deleteDump);
     self::assertInstanceOf(\de\codenamephp\deployer\mariadb\task\import\factory\SimpleNew::class, $this->sut->import);
     self::assertInstanceOf(\de\codenamephp\deployer\mariadb\task\download\factory\SimpleNew::class, $this->sut->download);
-    self::assertInstanceOf(DoNotRunOnProduction::class, $this->sut->hostCheck);
+    self::assertSame($hostCheck, $this->sut->hostCheck);
     self::assertInstanceOf(All::class, $this->sut->deployerFunctions);
   }
 

@@ -5,7 +5,6 @@ namespace de\codenamephp\deployer\mariadb\test\task;
 use Closure;
 use de\codenamephp\deployer\base\functions\iAll;
 use de\codenamephp\deployer\base\functions\iInput;
-use de\codenamephp\deployer\base\hostCheck\DoNotRunOnProduction;
 use de\codenamephp\deployer\base\hostCheck\iHostCheck;
 use de\codenamephp\deployer\base\iConfigurationKeys;
 use de\codenamephp\deployer\base\MissingInputException;
@@ -43,6 +42,8 @@ final class CopyTest extends TestCase {
   }
 
   public function test__construct() : void {
+    $hostCheck = $this->createMock(iHostCheck::class);
+
     $deployerFunctions = $this->createMock(iAll::class);
     $deployerFunctions->expects(self::once())->method('option')->with(
       Copy::DB_SOURCE_HOST,
@@ -52,7 +53,7 @@ final class CopyTest extends TestCase {
       iConfigurationKeys::PRODUCTION
     );
 
-    $this->sut = new Copy(deployerFunctions: $deployerFunctions);
+    $this->sut = new Copy(hostCheck: $hostCheck, deployerFunctions: $deployerFunctions);
 
     self::assertSame($deployerFunctions, $this->sut->deployerFunctions);
     self::assertInstanceOf(SimpleNew::class, $this->sut->database);
@@ -62,7 +63,7 @@ final class CopyTest extends TestCase {
     self::assertInstanceOf(\de\codenamephp\deployer\mariadb\task\deleteDump\factory\SimpleNew::class, $this->sut->deleteDump);
     self::assertInstanceOf(\de\codenamephp\deployer\mariadb\task\upload\factory\SimpleNew::class, $this->sut->upload);
     self::assertInstanceOf(\de\codenamephp\deployer\mariadb\task\import\factory\SimpleNew::class, $this->sut->import);
-    self::assertInstanceOf(DoNotRunOnProduction::class, $this->sut->hostCheck);
+    self::assertSame($hostCheck, $this->sut->hostCheck);
   }
 
   public function test__invoke() : void {

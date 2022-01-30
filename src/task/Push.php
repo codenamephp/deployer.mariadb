@@ -16,6 +16,7 @@ use de\codenamephp\deployer\base\functions\All;
 use de\codenamephp\deployer\base\functions\iAll;
 use de\codenamephp\deployer\base\hostCheck\DoNotRunOnProduction;
 use de\codenamephp\deployer\base\hostCheck\iHostCheck;
+use de\codenamephp\deployer\base\hostCheck\SkippableByOption;
 use de\codenamephp\deployer\base\UnsafeOperationException;
 use de\codenamephp\deployer\mariadb\database\factory\database\iDatabase;
 use de\codenamephp\deployer\mariadb\database\factory\database\SimpleNew;
@@ -37,7 +38,7 @@ final class Push implements iTask {
     public iDeleteDump $deleteDump = new deleteDump\factory\SimpleNew(),
     public iImport     $import = new import\factory\SimpleNew(),
     public iUpload     $upload = new upload\factory\SimpleNew(),
-    public iHostCheck  $hostCheck = new DoNotRunOnProduction(),
+    public iHostCheck  $hostCheck = new SkippableByOption(new DoNotRunOnProduction()),
     public iAll        $deployerFunctions = new All()
   ) {
   }

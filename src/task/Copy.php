@@ -17,6 +17,7 @@ use de\codenamephp\deployer\base\functions\iAll;
 use de\codenamephp\deployer\base\functions\iInput;
 use de\codenamephp\deployer\base\hostCheck\DoNotRunOnProduction;
 use de\codenamephp\deployer\base\hostCheck\iHostCheck;
+use de\codenamephp\deployer\base\hostCheck\SkippableByOption;
 use de\codenamephp\deployer\base\iConfigurationKeys;
 use de\codenamephp\deployer\base\MissingInputException;
 use de\codenamephp\deployer\base\UnsafeOperationException;
@@ -47,7 +48,7 @@ final class Copy implements iTask {
                               public iImport     $import = new import\factory\SimpleNew(),
                               public iDownload   $download = new download\factory\SimpleNew(),
                               public iUpload     $upload = new upload\factory\SimpleNew(),
-                              public iHostCheck  $hostCheck = new DoNotRunOnProduction(),
+                              public iHostCheck  $hostCheck = new SkippableByOption(new DoNotRunOnProduction()),
                               public iAll        $deployerFunctions = new All()) {
     $this->deployerFunctions->option(self::DB_SOURCE_HOST, null, iInput::OPTION_VALUE_REQUIRED, 'The source host to copy the database(s) from', iConfigurationKeys::PRODUCTION);
   }
