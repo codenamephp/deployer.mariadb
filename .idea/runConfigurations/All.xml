@@ -1,6 +1,11 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="All" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
-    <TestRunner directory="$PROJECT_DIR$/test" />
+    <CommandLine>
+      <envs>
+        <env name="XDEBUG_MODE" value="debug" />
+      </envs>
+    </CommandLine>
+    <TestRunner configuration_file="/app/test/phpunit.dist.xml" directory="$PROJECT_DIR$/test" />
     <method v="2" />
   </configuration>
 </component>

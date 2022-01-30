@@ -17,27 +17,18 @@ final class FromDatabaseNameAndTimestampTest extends TestCase {
 
     $database = $this->createMock(iDatabase::class);
 
-    $this->sut = new FromDatabaseNameAndTimestamp($database);
+    $this->sut = new FromDatabaseNameAndTimestamp($database, '');
   }
 
   public function test__construct() : void {
-    $this->sut = new FromDatabaseNameAndTimestamp(new Immutable('', '', 'mydb'));
+    $this->sut = new FromDatabaseNameAndTimestamp(new Immutable('', '', 'mydb'), 'some/folder');
 
-    self::assertInstanceOf(DateTimeImmutable::class, $this->sut->getNow());
     self::assertStringContainsString('databasedump_mydb_', $this->sut->getName());
   }
 
   public function test__construct_withDateTime() : void {
-    $this->sut = new FromDatabaseNameAndTimestamp(new Immutable('', '', 'mydb'), new DateTimeImmutable('2010-11-12 13:14:15'));
+    $this->sut = new FromDatabaseNameAndTimestamp(new Immutable('', '', 'mydb'), 'some/folder/', new DateTimeImmutable('2010-11-12 13:14:15'));
 
-    self::assertEquals('databasedump_mydb_20101112131415', (string) $this->sut);
-  }
-
-  public function testSetNow() : void {
-    $now = new DateTimeImmutable();
-
-    $this->sut->setNow($now);
-
-    self::assertSame($now, $this->sut->getNow());
+    self::assertEquals('some/folder/databasedump_mydb_20101112131415', (string) $this->sut);
   }
 }

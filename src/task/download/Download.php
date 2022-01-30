@@ -31,6 +31,6 @@ final class Download implements iTask, iDownload {
    * @throws RunException
    */
   public function __invoke() : void {
-    $this->deployerFunctions->download($this->remoteDumpfile->getName(), $this->localDumpfile->getName());
+    $this->deployerFunctions->download($this->remoteDumpfile->getFilename(), $this->localDumpfile->getFilename());
   }
 }

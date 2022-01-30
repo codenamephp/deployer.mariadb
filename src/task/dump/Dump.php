@@ -41,7 +41,7 @@ final class Dump implements iDump {
    * @throws TimeoutException
    */
   public function __invoke() : void {
-    $dumpfile = $this->dumpfile->getName();
+    $dumpfile = $this->dumpfile->getFilename();
 
     $ignoredTableString = implode(' ', array_map(static fn(string $table) => sprintf('--ignore-table %s', $table), $this->database->getTablesToIgnore()));
 

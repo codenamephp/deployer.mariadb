@@ -6,7 +6,6 @@ use de\codenamephp\deployer\base\functions\All;
 use de\codenamephp\deployer\base\functions\iRun;
 use de\codenamephp\deployer\mariadb\database\iDatabase;
 use de\codenamephp\deployer\mariadb\database\Immutable;
-use de\codenamephp\deployer\mariadb\dumpfile\FromString;
 use de\codenamephp\deployer\mariadb\dumpfile\iDumpfile;
 use de\codenamephp\deployer\mariadb\task\import\Import;
 use PHPUnit\Framework\TestCase;
@@ -26,7 +25,7 @@ final class ImportTest extends TestCase {
 
   public function test__invoke() : void {
     $this->sut->database = new Immutable('myUser', 'topSecret', 'myDatabase', [], 'myHost', 1234);
-    $this->sut->dumpfile = new FromString('dumpfile');
+    $this->sut->dumpfile = $this->createConfiguredMock(iDumpfile::class, ['getFilename' => '/some/folder/file']);
 
     $this->sut->deployerFunctions = $this->createMock(iRun::class);
     $this->sut->deployerFunctions
@@ -34,7 +33,7 @@ final class ImportTest extends TestCase {
       ->method('run')
       ->withConsecutive(
         ['mysql --user=myUser --password=topSecret --host=myHost --port=1234 -e "CREATE DATABASE IF NOT EXISTS myDatabase;"'],
-        ['mysql --user=myUser --password=topSecret --host=myHost --port=1234 myDatabase < dumpfile;']
+        ['mysql --user=myUser --password=topSecret --host=myHost --port=1234 myDatabase < /some/folder/file;']
       );
 
     $this->sut->__invoke();

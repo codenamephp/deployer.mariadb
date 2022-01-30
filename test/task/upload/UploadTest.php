@@ -33,8 +33,8 @@ final class UploadTest extends TestCase {
   }
 
   public function test__invoke() : void {
-    $this->sut->localDumpfile = $this->createConfiguredMock(iDumpfile::class, ['getName' => 'local']);
-    $this->sut->remoteDumpfile = $this->createConfiguredMock(iDumpfile::class, ['getName' => 'remote']);
+    $this->sut->localDumpfile = $this->createConfiguredMock(iDumpfile::class, ['getFilename' => 'local']);
+    $this->sut->remoteDumpfile = $this->createConfiguredMock(iDumpfile::class, ['getFilename' => 'remote']);
 
     $this->sut->deployerFunctions = $this->createMock(iUpload::class);
     $this->sut->deployerFunctions->expects(self::once())->method('upload')->with('local', 'remote');

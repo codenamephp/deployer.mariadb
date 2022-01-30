@@ -35,6 +35,6 @@ final class DeleteDump implements iDeleteDump {
    * @throws TimeoutException
    */
   public function __invoke() : void {
-    $this->deployerFunctions->run(sprintf('rm %s', $this->dumpfile->getName()));
+    $this->deployerFunctions->run(sprintf('rm %s', $this->dumpfile->getFilename()));
   }
 }

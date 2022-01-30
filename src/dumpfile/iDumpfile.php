@@ -26,7 +26,21 @@ interface iDumpfile {
   public function getName() : string;
 
   /**
-   * In most implementations this should be an alias to getName()
+   * Gets the folder of the dumpfile (without the filename) and no trailing slash
+   *
+   * @return string
+   */
+  public function getFolder() : string;
+
+  /**
+   * Gets the complete filename including the folder
+   *
+   * @return string
+   */
+  public function getFilename() : string;
+
+  /**
+   * In most implementations this should be an alias to getFilename()
    *
    * @return string
    */

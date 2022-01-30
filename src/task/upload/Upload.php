@@ -33,6 +33,6 @@ final class Upload implements iUpload {
    * @throws RunException
    */
   public function __invoke() : void {
-    $this->deployerFunctions->upload($this->localDumpfile->getName(), $this->remoteDumpfile->getName());
+    $this->deployerFunctions->upload($this->localDumpfile->getFilename(), $this->remoteDumpfile->getFilename());
   }
 }

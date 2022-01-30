@@ -31,7 +31,7 @@ final class DeleteDumpTest extends TestCase {
 
   public function test__invoke() : void {
     $this->sut->dumpfile = $this->createMock(iDumpfile::class);
-    $this->sut->dumpfile->expects(self::once())->method('getName')->willReturn('some-dump-file');
+    $this->sut->dumpfile->expects(self::once())->method('getFilename')->willReturn('some-dump-file');
 
     $this->sut->deployerFunctions = $this->createMock(iRun::class);
     $this->sut->deployerFunctions->expects(self::once())->method('run')->with('rm some-dump-file');

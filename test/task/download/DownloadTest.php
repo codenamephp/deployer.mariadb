@@ -33,8 +33,8 @@ final class DownloadTest extends TestCase {
   }
 
   public function test__invoke() : void {
-    $this->sut->localDumpfile = $this->createConfiguredMock(iDumpfile::class, ['getName' => 'local']);
-    $this->sut->remoteDumpfile = $this->createConfiguredMock(iDumpfile::class, ['getName' => 'remote']);
+    $this->sut->localDumpfile = $this->createConfiguredMock(iDumpfile::class, ['getFilename' => 'local']);
+    $this->sut->remoteDumpfile = $this->createConfiguredMock(iDumpfile::class, ['getFilename' => 'remote']);
 
     $this->sut->deployerFunctions = $this->createMock(iDownload::class);
     $this->sut->deployerFunctions->expects(self::once())->method('download')->with('remote', 'local');

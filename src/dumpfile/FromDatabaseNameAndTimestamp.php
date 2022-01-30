@@ -23,32 +23,25 @@ final class FromDatabaseNameAndTimestamp implements iDumpfile {
 
   private string $name;
 
-  private DateTimeInterface $now;
-
-  public function __construct(iDatabase $database, DateTimeInterface $now = null) {
-    $this->setNow($now ?? new DateTimeImmutable());
-    $this->setName(sprintf('databasedump_%s_%d', $database->getName(), $this->getNow()->format('YmdHis')));
-  }
-
-  public function getNow() : DateTimeInterface {
-    return $this->now;
-  }
-
-  public function setNow(DateTimeInterface $now) : self {
-    $this->now = $now;
-    return $this;
+  public function __construct(iDatabase $database, private string $folder, ?DateTimeInterface $now = null) {
+    $now = $now ?? new DateTimeImmutable();
+    $this->name = sprintf('databasedump_%s_%d', $database->getName(), $now->format('YmdHis'));
+    $this->folder = rtrim($this->folder, DIRECTORY_SEPARATOR);
   }
 
   public function getName() : string {
     return $this->name;
   }
 
-  public function __toString() : string {
-    return $this->getName();
+  public function getFolder() : string {
+    return $this->folder;
   }
 
-  private function setName(string $name) : iDumpfile {
-    $this->name = $name;
-    return $this;
+  public function getFilename() : string {
+    return $this->getFolder() . DIRECTORY_SEPARATOR . $this->getName();
+  }
+
+  public function __toString() : string {
+    return $this->getFilename();
   }
 }
