@@ -18,7 +18,7 @@ use de\codenamephp\deployer\mariadb\dumpfile\iDumpfile;
 
 final class SimpleNew implements \de\codenamephp\deployer\mariadb\dumpfile\factory\iDumpfile {
 
-  public function __construct(public string $dumpfileFolder = '{{release_path}}') { }
+  public function __construct(public string $dumpfileFolder = '{{deploy_path}}') { }
 
   public function create(iDatabase $database) : iDumpfile {
     return new FromDatabaseNameAndTimestamp($database, $this->dumpfileFolder);
