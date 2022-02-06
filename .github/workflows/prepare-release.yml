@@ -18,5 +18,5 @@ jobs:
     needs: calculate_next_version
     with:
       ref: ${{github.ref_name}}
-      future_release: ${{ needs.calculate_next_version.outputs.version }}
-      release_branch: 'release'
+      future-release: ${{ needs.calculate_next_version.outputs.version }}
+      release-branch: 'release'
