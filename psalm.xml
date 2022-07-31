@@ -22,6 +22,7 @@
   xmlns="https://getpsalm.org/schema/config"
   xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
   cacheDirectory=".cache/psalm"
+  autoloader="test/bootstrap.php"
 >
     <projectFiles>
         <directory name="src"/>
@@ -29,9 +30,4 @@
             <directory name="vendor"/>
         </ignoreFiles>
     </projectFiles>
-
-    <issueHandlers>
-        <MissingConstructor errorLevel="suppress"/>
-        <PropertyNotSetInConstructor errorLevel="suppress"/>
-    </issueHandlers>
 </psalm>
