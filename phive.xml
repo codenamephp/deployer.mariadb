@@ -16,9 +16,9 @@
   ~
   -->
 <phive xmlns="https://phar.io/phive">
-  <phar name="phpunit" version="^9.0.1" installed="9.5.13" location="./tools/phpunit.phar" copy="true"/>
-  <phar name="psalm" version="^4.0" installed="4.18.1" location="./tools/psalm" copy="true"/>
-  <phar name="composer-unused" version="^0.7.1" installed="0.7.12" location="./tools/composer-unused" copy="true"/>
-  <phar name="composer-require-checker" version="^4.0" installed="4.0.0" location="./tools/composer-require-checker" copy="true"/>
-  <phar name="infection" version="^0.26" installed="0.26.2" location="./tools/infection" copy="true"/>
+  <phar name="phpunit" version="^9.0.1" installed="9.5.21" location="./tools/phpunit.phar" copy="true"/>
+  <phar name="psalm" version="^4.0" installed="4.25.0" location="./tools/psalm" copy="true"/>
+  <phar name="composer-unused" version="^0.8" installed="0.8.2" location="./tools/composer-unused" copy="true"/>
+  <phar name="composer-require-checker" version="^4.0" installed="4.1.0" location="./tools/composer-require-checker" copy="true"/>
+  <phar name="infection" version="^0.26" installed="0.26.13" location="./tools/infection" copy="true"/>
 </phive>

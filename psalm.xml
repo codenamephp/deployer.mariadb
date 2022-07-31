@@ -18,7 +18,6 @@
 
 <psalm
   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  totallyTyped="true"
   xmlns="https://getpsalm.org/schema/config"
   xsi:schemaLocation="https://getpsalm.org/schema/config vendor/vimeo/psalm/config.xsd"
   cacheDirectory=".cache/psalm"
