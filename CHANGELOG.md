@@ -6,6 +6,7 @@
 
 **Merged pull requests:**
 
+- Updated CI [\#3](https://github.com/codenamephp/deployer.mariadb/pull/3) ([bastianschwarz](https://github.com/bastianschwarz))
 - Update codenamephp/deployer.base requirement from ^1.0 to ^1.0 || ^2.0 [\#2](https://github.com/codenamephp/deployer.mariadb/pull/2) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [1.0.0](https://github.com/codenamephp/deployer.mariadb/tree/1.0.0) (2022-02-06)
