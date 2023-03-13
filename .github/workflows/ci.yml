@@ -17,6 +17,6 @@ on:
 
 jobs:
   ci:
-    uses: codenamephp/workflows.php/.github/workflows/ci.yml@main
+    uses: codenamephp/workflows.php/.github/workflows/ci.yml@1
     with:
       php-versions: '["8.1","8.2"]'
