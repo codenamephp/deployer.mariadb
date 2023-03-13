@@ -19,9 +19,13 @@ use de\codenamephp\deployer\mariadb\task\import\factory\iImport;
 use de\codenamephp\deployer\mariadb\task\upload\factory\iUpload;
 use Deployer\Host\Host;
 use Deployer\Host\Localhost;
+use Hamcrest\Matchers;
+use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
 use PHPUnit\Framework\TestCase;
 
 final class CopyTest extends TestCase {
+
+  use MockeryPHPUnitIntegration;
 
   private Copy $sut;
 
@@ -73,14 +77,12 @@ final class CopyTest extends TestCase {
     $sourceHost = $this->createMock(Host::class);
     $localhost = $this->createMock(Localhost::class);
 
-    $this->sut->deployerFunctions = $this->createMock(iAll::class);
-    $this->sut->deployerFunctions->expects(self::once())->method('getOption')->with(Copy::DB_SOURCE_HOST)->willReturn('some source host');
-    $this->sut->deployerFunctions->expects(self::once())->method('localhost')->willReturn($localhost);
-    $this->sut->deployerFunctions->expects(self::once())->method('host')->with('some source host')->willReturn($sourceHost);
-    $this->sut->deployerFunctions->expects(self::exactly(2))
-      ->method('on')
-      ->withConsecutive([$sourceHost], [$localhost])
-      ->willReturnCallback(static fn($hosts, Closure $callback) => $callback());
+    $this->sut->deployerFunctions = \Mockery::mock(iAll::class);
+    $this->sut->deployerFunctions->allows('getOption')->once()->with(Copy::DB_SOURCE_HOST)->andReturn('some source host');
+    $this->sut->deployerFunctions->allows('localhost')->once()->andReturn($localhost);
+    $this->sut->deployerFunctions->allows('host')->once()->with('some source host')->andReturn($sourceHost);
+    $this->sut->deployerFunctions->allows('on')->once()->with($sourceHost, Matchers::callableValue())->andReturnUsing(static fn($hosts, Closure $callback) => $callback());
+    $this->sut->deployerFunctions->allows('on')->once()->with($localhost, Matchers::callableValue())->andReturnUsing(static fn($hosts, Closure $callback) => $callback());
 
     $targetDatabase = $this->createMock(\de\codenamephp\deployer\mariadb\database\iDatabase::class);
     $sourceDatabase = $this->createMock(\de\codenamephp\deployer\mariadb\database\iDatabase::class);
