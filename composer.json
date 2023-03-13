@@ -12,7 +12,7 @@
   "prefer-stable": true,
   "require": {
     "php": "^8.1",
-    "codenamephp/deployer.base": "^1.0 || ^2.0",
+    "codenamephp/deployer.base": "1 - 3",
     "deployer/deployer": "^7.0"
   },
   "autoload": {
@@ -55,5 +55,8 @@
     "composer-require-checker": "Checks for missing required composer packages",
     "infection": "Creates mutation tests to discover missing test coverage",
     "ci-all": "Runs all ci tools in sequence"
+  },
+  "require-dev": {
+    "mockery/mockery": "^1.5"
   }
 }

@@ -17,6 +17,8 @@ use de\codenamephp\deployer\mariadb\task\iTask;
 
 /**
  * Simple abstract factory to create database instances
+ *
+ * @psalm-api
  */
 interface iDatabase {
 

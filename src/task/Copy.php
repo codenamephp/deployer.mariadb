@@ -36,6 +36,8 @@ use Deployer\Host\Host;
  * using the db:sourceHost option. If no source is given it defaults to production.
  *
  * So dep db:copy staging --db:sourceHost=main would copy the database from staging to main while dep db:copy main would copy from production to main
+ *
+ * @psalm-api
  */
 final class Copy implements iTask {
 
