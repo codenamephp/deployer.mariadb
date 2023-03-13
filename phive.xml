@@ -20,5 +20,5 @@
   <phar name="psalm" version="^5.0" installed="5.8.0" location="./tools/psalm" copy="true"/>
   <phar name="composer-unused" version="^0.8" installed="0.8.6" location="./tools/composer-unused" copy="true"/>
   <phar name="composer-require-checker" version="^4.0" installed="4.5.0" location="./tools/composer-require-checker" copy="true"/>
-  <phar name="infection" version="^0.26" installed="0.26.18" location="./tools/infection" copy="true"/>
+  <phar name="infection" version="^0.26" installed="0.26.19" location="./tools/infection" copy="true"/>
 </phive>
