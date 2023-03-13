@@ -1,11 +1,12 @@
 # Changelog
 
-## [1.0.2](https://github.com/codenamephp/deployer.mariadb/tree/1.0.2) (2022-12-15)
+## [1.0.2](https://github.com/codenamephp/deployer.mariadb/tree/1.0.2) (2023-03-13)
 
 [Full Changelog](https://github.com/codenamephp/deployer.mariadb/compare/1.0.1...1.0.2)
 
 **Merged pull requests:**
 
+- deployer.base v3 [\#5](https://github.com/codenamephp/deployer.mariadb/pull/5) ([bastianschwarz](https://github.com/bastianschwarz))
 - Bump webdevops/php-dev from 8.1 to 8.2 in /docker/application [\#4](https://github.com/codenamephp/deployer.mariadb/pull/4) ([dependabot[bot]](https://github.com/apps/dependabot))
 
 ## [1.0.1](https://github.com/codenamephp/deployer.mariadb/tree/1.0.1) (2022-07-31)
