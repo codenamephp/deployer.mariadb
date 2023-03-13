@@ -27,6 +27,8 @@ use de\codenamephp\deployer\mariadb\task\import\factory\iImport;
 
 /**
  * A collection of tasks that pulls a remote database to local
+ *
+ * @psalm-api
  */
 final class Pull implements iTask {
 

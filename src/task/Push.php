@@ -28,6 +28,8 @@ use de\codenamephp\deployer\mariadb\task\upload\factory\iUpload;
 
 /**
  * Pushes the local database to the remote system so local changes will overwrite the remote ones
+ *
+ * @psalm-api
  */
 final class Push implements iTask {
 
