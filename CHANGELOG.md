@@ -1,5 +1,13 @@
 # Changelog
 
+## [1.0.3](https://github.com/codenamephp/deployer.mariadb/tree/1.0.3) (2023-09-05)
+
+[Full Changelog](https://github.com/codenamephp/deployer.mariadb/compare/1.0.2...1.0.3)
+
+**Fixed bugs:**
+
+- Fix: Quote parameters to prevent breaking of command [\#6](https://github.com/codenamephp/deployer.mariadb/pull/6) ([bastianschwarz](https://github.com/bastianschwarz))
+
 ## [1.0.2](https://github.com/codenamephp/deployer.mariadb/tree/1.0.2) (2023-03-13)
 
 [Full Changelog](https://github.com/codenamephp/deployer.mariadb/compare/1.0.1...1.0.2)
