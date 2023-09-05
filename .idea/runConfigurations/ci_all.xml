@@ -1,8 +1,0 @@
-<component name="ProjectRunConfigurationManager">
-  <configuration default="false" name="ci-all" type="ComposerRunConfigurationType" factoryName="Composer Script">
-    <option name="commandLineParameters" value="" />
-    <option name="pathToComposerJson" value="$PROJECT_DIR$/composer.json" />
-    <option name="script" value="ci-all" />
-    <method v="2" />
-  </configuration>
-</component>
