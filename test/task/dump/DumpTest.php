@@ -42,8 +42,8 @@ final class DumpTest extends TestCase {
     $this->sut->dumpfile = $this->createConfiguredMock(iDumpfile::class, ['getFilename' => '/some/folder/file']);
 
     $this->sut->deployerFunctions = \Mockery::mock(iRun::class);
-    $this->sut->deployerFunctions->allows('run')->once()->ordered()->with('mysqldump --user=myUser --password=topSecret --host=someHost --port=1234 --comments=false --disable-keys --no-autocommit --single-transaction --add-drop-table --routines --no-data myDatabase > /some/folder/file');
-    $this->sut->deployerFunctions->allows('run')->once()->ordered()->with('mysqldump --user=myUser --password=topSecret --host=someHost --port=1234 --comments=false --disable-keys --no-autocommit --single-transaction --no-create-info --extended-insert --ignore-table ignore1 --ignore-table ignore2 myDatabase >> /some/folder/file');
+    $this->sut->deployerFunctions->allows('run')->once()->ordered()->with('mysqldump --user="myUser" --password="topSecret" --host="someHost" --port=1234 --comments=false --disable-keys --no-autocommit --single-transaction --add-drop-table --routines --no-data "myDatabase" > "/some/folder/file"');
+    $this->sut->deployerFunctions->allows('run')->once()->ordered()->with('mysqldump --user="myUser" --password="topSecret" --host="someHost" --port=1234 --comments=false --disable-keys --no-autocommit --single-transaction --no-create-info --extended-insert --ignore-table "ignore1" --ignore-table "ignore2" "myDatabase" >> "/some/folder/file"');
 
     $this->sut->__invoke();
   }

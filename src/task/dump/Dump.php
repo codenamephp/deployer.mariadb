@@ -43,12 +43,12 @@ final class Dump implements iDump {
   public function __invoke() : void {
     $dumpfile = $this->dumpfile->getFilename();
 
-    $ignoredTableString = implode(' ', array_map(static fn(string $table) => sprintf('--ignore-table %s', $table), $this->database->getTablesToIgnore()));
+    $ignoredTableString = implode(' ', array_map(static fn(string $table) => sprintf('--ignore-table "%s"', $table), $this->database->getTablesToIgnore()));
 
     $name = $this->database->getName();
 
-    $baseCommand = sprintf('mysqldump --user=%s --password=%s --host=%s --port=%d --comments=false --disable-keys --no-autocommit --single-transaction', $this->database->getUser(), $this->database->getPassword(), $this->database->getHost(), $this->database->getPort());
-    $this->deployerFunctions->run(sprintf('%s --add-drop-table --routines --no-data %s > %s', $baseCommand, $name, $dumpfile));
-    $this->deployerFunctions->run(sprintf('%s --no-create-info --extended-insert %s %s >> %s', $baseCommand, $ignoredTableString, $name, $dumpfile));
+    $baseCommand = sprintf('mysqldump --user="%s" --password="%s" --host="%s" --port=%d --comments=false --disable-keys --no-autocommit --single-transaction', $this->database->getUser(), $this->database->getPassword(), $this->database->getHost(), $this->database->getPort());
+    $this->deployerFunctions->run(sprintf('%s --add-drop-table --routines --no-data "%s" > "%s"', $baseCommand, $name, $dumpfile));
+    $this->deployerFunctions->run(sprintf('%s --no-create-info --extended-insert %s "%s" >> "%s"', $baseCommand, $ignoredTableString, $name, $dumpfile));
   }
 }
