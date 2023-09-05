@@ -32,8 +32,8 @@ final class ImportTest extends TestCase {
     $this->sut->dumpfile = $this->createConfiguredMock(iDumpfile::class, ['getFilename' => '/some/folder/file']);
 
     $this->sut->deployerFunctions = Mockery::mock(iRun::class);
-    $this->sut->deployerFunctions->allows('run')->once()->ordered()->with('mysql --user=myUser --password=topSecret --host=myHost --port=1234 -e "CREATE DATABASE IF NOT EXISTS myDatabase;"');
-    $this->sut->deployerFunctions->allows('run')->once()->ordered()->with('mysql --user=myUser --password=topSecret --host=myHost --port=1234 myDatabase < /some/folder/file;');
+    $this->sut->deployerFunctions->allows('run')->once()->ordered()->with('mysql --user="myUser" --password="topSecret" --host="myHost" --port=1234 -e "CREATE DATABASE IF NOT EXISTS myDatabase;"');
+    $this->sut->deployerFunctions->allows('run')->once()->ordered()->with('mysql --user="myUser" --password="topSecret" --host="myHost" --port=1234 "myDatabase" < "/some/folder/file";');
 
     $this->sut->__invoke();
   }

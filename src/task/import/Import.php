@@ -43,8 +43,8 @@ final class Import implements iImport {
    */
   public function __invoke() : void {
     $name = $this->database->getName();
-    $baseCommand = sprintf('mysql --user=%s --password=%s --host=%s --port=%s', $this->database->getUser(), $this->database->getPassword(), $this->database->getHost(), $this->database->getPort());
+    $baseCommand = sprintf('mysql --user="%s" --password="%s" --host="%s" --port=%d', $this->database->getUser(), $this->database->getPassword(), $this->database->getHost(), $this->database->getPort());
     $this->deployerFunctions->run(sprintf('%s -e "CREATE DATABASE IF NOT EXISTS %s;"', $baseCommand, $name));
-    $this->deployerFunctions->run(sprintf('%s %s < %s;', $baseCommand, $name, $this->dumpfile->getFilename()));
+    $this->deployerFunctions->run(sprintf('%s "%s" < "%s";', $baseCommand, $name, $this->dumpfile->getFilename()));
   }
 }
