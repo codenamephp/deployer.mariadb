@@ -1,5 +1,13 @@
 # Changelog
 
+## [2.0.0](https://github.com/codenamephp/deployer.mariadb/tree/2.0.0) (2024-01-15)
+
+[Full Changelog](https://github.com/codenamephp/deployer.mariadb/compare/1.1.0...2.0.0)
+
+**Merged pull requests:**
+
+- Drop PHP8.1 [\#9](https://github.com/codenamephp/deployer.mariadb/pull/9) ([bastianschwarz](https://github.com/bastianschwarz))
+
 ## [1.1.0](https://github.com/codenamephp/deployer.mariadb/tree/1.1.0) (2024-01-15)
 
 [Full Changelog](https://github.com/codenamephp/deployer.mariadb/compare/1.0.3...1.1.0)
